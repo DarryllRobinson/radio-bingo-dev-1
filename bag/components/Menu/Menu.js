@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import "../node_modules/jquery/dist/jquery.min.js";
-import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
-import './App.css';
+//import { Nav, Navbar, Button, NavItem} from 'react-bootstrap';
+import "../../../node_modules/jquery/dist/jquery.min.js";
+import "../../../node_modules/bootstrap/dist/js/bootstrap.min.js";
+import './Menu.css';
 
-class App extends Component {
+class Menu extends Component {
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
@@ -50,28 +51,9 @@ class App extends Component {
             </div>
           </nav>
       )}
-      {
-        !isAuthenticated() && (
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div  className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul  className="navbar-nav mr-auto">
-                <li  className="nav-item active">
-                  <a  className="nav-link"
-                    onClick={this.login.bind(this)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Log In
-                  <span  className="sr-only">
-                  </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-      )}
       </div>
     );
   }
 }
 
-export default App;
+export default Menu;
