@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlipCard from 'react-flipcard';
+import PropTypes from 'prop-types'
 
 class Flip extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class Flip extends Component {
 
     this.state = {
       isFlipped: false
-    };
+    }
   }
 
 
