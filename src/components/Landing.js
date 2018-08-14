@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
-//import FlipCard from 'react-flipcard';
+import { FlexyFlipCard } from 'flexy-flipcards';
 
 import Bingo from '../utils/Bingo';
 
@@ -65,26 +65,6 @@ class Landing extends Component {
     });
   }
 
-  showBack() {
-    this.setState({ isFlipped: true });
-  }
-
-  showFront() {
-    this.setState({ isFlipped: false });
-  }
-
-  handleOnFlip(flipped) {
-    if (flipped) {
-      this.refs.backButton.getDOMNode().focus();
-    }
-  }
-
-  handleKeyDown(e) {
-    if (this.state.isFlipped && e.keyCode === 27) {
-      this.showFront();
-    }
-  }
-
   renderSongs() {
     if (this.state.tiles.length > 0) {
       let len = this.state.tiles.length - 1;
@@ -105,7 +85,7 @@ class Landing extends Component {
     }
   }
 
-  renderFront() {
+  xxxrenderFront() {
     if (this.state.tiles.length > 0) {
       return this.state.tiles.map(tile => {
         return (
@@ -144,40 +124,111 @@ class Landing extends Component {
     }
   }
 
+  renderFront() {
+    if (this.state.tiles.length > 0) {
+      return this.state.tiles.map(tile => {
+        return (
+          <div
+            className="item"
+            key={tile[0].id}>
+              <FlexyFlipCard
+                  frontBackgroundColor="#000034"
+                  backBackgroundColor="#000034"
+              >
+                <div ref="flipper">
+                  <h3>{tile[0].name}</h3>
+                  <br />
+                </div>
+
+                <div ref="flipper">
+
+
+                  <h4>
+                    <input type="radio"
+                      name="artist1"
+                      value={tile[0].artist_1}
+                    />
+                    {tile[0].artist_1}
+                    <br />
+                    <br />
+                    <input type="radio"
+                      name="artist2"
+                      value={tile[0].artist_2}
+                    />
+                    {tile[0].artist_2}
+                    <br />
+                    <br />
+                    <input type="radio"
+                      name="artist3"
+                      value={tile[0].artist_3}
+                    />
+                    {tile[0].artist_3}
+                  </h4>
+                </div>
+              </FlexyFlipCard>
+
+          </div>
+        );
+      });
+    }
+  }
+
   renderBack() {
     if (this.state.tiles.length > 0) {
       return this.state.tiles.map(tile => {
         return (
-          <div className="item">
-            <h4>
-              <input type="radio"
-                name="artist1"
-                value={tile[0].artist_1}
-              />
-              {tile[0].artist_1}
-              <br />
-              <br />
-              <input type="radio"
-                name="artist2"
-                value={tile[0].artist_2}
-              />
-              {tile[0].artist_2}
-              <br />
-              <br />
-              <input type="radio"
-                name="artist3"
-                value={tile[0].artist_3}
-              />
-              {tile[0].artist_3}
-              <br />
-              <br />
-            </h4>
-          </div>
 
+            <div
+              className="item"
+              key={tile[0].id}>
+              <div ref="flipper">
+              <br />
+
+
+              <h4>
+                <input type="radio"
+                  name="artist1"
+                  value={tile[0].artist_1}
+                />
+                {tile[0].artist_1}
+                <br />
+                <br />
+                <input type="radio"
+                  name="artist2"
+                  value={tile[0].artist_2}
+                />
+                {tile[0].artist_2}
+                <br />
+                <br />
+                <input type="radio"
+                  name="artist3"
+                  value={tile[0].artist_3}
+                />
+                {tile[0].artist_3}
+              </h4>
+            </div>
+          </div>
 
         );
       });
     }
+  }
+
+  render() {
+    return (
+      <div className="Landing">
+        <h2>Your Radio Bingo Board</h2>
+
+        <div className="tileCard">
+
+          <div className="item-list">
+            {this.renderFront()}
+            </div>
+
+        </div>
+
+      </div>
+    )
   }
 
   printSongs() {
@@ -233,7 +284,7 @@ class Landing extends Component {
     });
   }
 
-  render() {
+  xxxrender() {
     return (
       <div className="Landing">
         <h2>Your Radio Bingo Board</h2>
@@ -241,13 +292,38 @@ class Landing extends Component {
         <div className="tileCard">
 
           <div className="item-list">
-            {/*<FlipCard>*/}
-              {this.renderFront()}
+            <div className="item">
+              <FlexyFlipCard
+                  frontBackgroundColor="#B96aC9"
+                  backBackgroundColor="#231b1b"
+              >
+                  <div>
+                      Front 1
+                      <div ref="flipper">
+                      >>>
+                      </div>
+                    </div>
+                    <div ref="flipper">
+                      Back 1
+                    </div>
+              </FlexyFlipCard>
+            </div>
 
-              {/*this.renderBack()*/}
+              <div className="item">
+                <FlexyFlipCard
+                    frontBackgroundColor="#B96aC9"
+                    backBackgroundColor="#231b1b"
+                >
+                    <div ref="flipper">
+                        Front 2
+                      </div>
+                      <div ref="flipper">
+                        Back 2
+                      </div>
+                </FlexyFlipCard>
+              </div>
 
-            {/*</FlipCard>*/}
-          </div>
+            </div>
 
         </div>
 
