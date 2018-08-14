@@ -98,6 +98,12 @@ a {
   background-color: #000034;
 }
 
+.saveArtist {
+  font-size: 1rem;
+  font-weight: 350;
+  color: white;
+}
+
 {/* now the magic starts happening - the tile items appear and are separated */}
 .xxxLanding .item {
   justify-content: center;

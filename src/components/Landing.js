@@ -65,65 +65,6 @@ class Landing extends Component {
     });
   }
 
-  renderSongs() {
-    if (this.state.tiles.length > 0) {
-      let len = this.state.tiles.length - 1;
-      console.log('len: ', len);
-      console.log('this.state.tiles[0][0].name: ',
-      this.state.tiles[0][0].name);
-      console.log('Songs: ', this.state.tiles);
-
-      /*return this.state.tiles[0][0].map(tile => {
-        return (
-          <div
-            className="item"
-            key={song.id}>
-            <h3>{song.name}</h3>
-          </div>
-        );
-      });*/
-    }
-  }
-
-  xxxrenderFront() {
-    if (this.state.tiles.length > 0) {
-      return this.state.tiles.map(tile => {
-        return (
-          <div
-            className="item"
-            key={tile[0].id}>
-            <h3>{tile[0].name}</h3>
-            <br />
-
-
-            <h4>
-              <input type="radio"
-                name="artist1"
-                value={tile[0].artist_1}
-              />
-              {tile[0].artist_1}
-              <br />
-              <br />
-              <input type="radio"
-                name="artist2"
-                value={tile[0].artist_2}
-              />
-              {tile[0].artist_2}
-              <br />
-              <br />
-              <input type="radio"
-                name="artist3"
-                value={tile[0].artist_3}
-              />
-              {tile[0].artist_3}
-            </h4>
-
-          </div>
-        );
-      });
-    }
-  }
-
   renderFront() {
     if (this.state.tiles.length > 0) {
       return this.state.tiles.map(tile => {
@@ -138,11 +79,10 @@ class Landing extends Component {
                 <div ref="flipper">
                   <h3>{tile[0].name}</h3>
                   <br />
+                  <h4>Select artist</h4>
                 </div>
 
-                <div ref="flipper">
-
-
+                <div>
                   <h4>
                     <input type="radio"
                       name="artist1"
@@ -163,52 +103,14 @@ class Landing extends Component {
                       value={tile[0].artist_3}
                     />
                     {tile[0].artist_3}
+                    <div className="saveArtist" ref="flipper">
+                      Save artist
+                    </div>
                   </h4>
                 </div>
               </FlexyFlipCard>
 
           </div>
-        );
-      });
-    }
-  }
-
-  renderBack() {
-    if (this.state.tiles.length > 0) {
-      return this.state.tiles.map(tile => {
-        return (
-
-            <div
-              className="item"
-              key={tile[0].id}>
-              <div ref="flipper">
-              <br />
-
-
-              <h4>
-                <input type="radio"
-                  name="artist1"
-                  value={tile[0].artist_1}
-                />
-                {tile[0].artist_1}
-                <br />
-                <br />
-                <input type="radio"
-                  name="artist2"
-                  value={tile[0].artist_2}
-                />
-                {tile[0].artist_2}
-                <br />
-                <br />
-                <input type="radio"
-                  name="artist3"
-                  value={tile[0].artist_3}
-                />
-                {tile[0].artist_3}
-              </h4>
-            </div>
-          </div>
-
         );
       });
     }
@@ -223,106 +125,6 @@ class Landing extends Component {
 
           <div className="item-list">
             {this.renderFront()}
-            </div>
-
-        </div>
-
-      </div>
-    )
-  }
-
-  printSongs() {
-    if (this.state.tiles.length > 0) {
-      //console.log('this.state.tiles[0]: ', this.state.tiles[0]);
-      console.log('this.state.tiles[0][0].id: ', this.state.tiles[0][0].id);
-      console.log('this.state.tiles[0][0].name: ', this.state.tiles[0][0].name);
-      console.log('this.state.tiles[0][0].artist: ', this.state.tiles[0][0].artist);
-
-
-      console.log('this.state.tiles[0][1][0].id: ', this.state.tiles[0][1][0].id);
-      console.log('this.state.tiles[0][1][0].artist: ', this.state.tiles[0][1][0].artist);
-
-
-      console.log('this.state.tiles[0][1][1].id: ', this.state.tiles[0][1][1].id);
-      console.log('this.state.tiles[0][1][1].artist: ', this.state.tiles[0][1][1].artist);
-    }
-  }
-
-  renderArtists() {
-    return this.state.artists.map(artist => {
-      return (
-          <div className="item"
-            key={artist.id}>
-            <h4>
-              <input type="radio"
-                name="artist1"
-                value={"value1"}
-              />
-              {console.log('artist.artist:', artist.artist)}
-              {artist.artist}
-              <br />
-              <br />
-
-              <input type="radio"
-                name="artist1"
-                value={"value1"}
-              />
-              {artist.artist}
-              <br />
-              <br />
-
-              <input type="radio"
-                name="artist1"
-                value={"value1"}
-              />
-              {artist.artist}
-              <br />
-              <br />
-            </h4>
-          </div>
-      );
-    });
-  }
-
-  xxxrender() {
-    return (
-      <div className="Landing">
-        <h2>Your Radio Bingo Board</h2>
-
-        <div className="tileCard">
-
-          <div className="item-list">
-            <div className="item">
-              <FlexyFlipCard
-                  frontBackgroundColor="#B96aC9"
-                  backBackgroundColor="#231b1b"
-              >
-                  <div>
-                      Front 1
-                      <div ref="flipper">
-                      >>>
-                      </div>
-                    </div>
-                    <div ref="flipper">
-                      Back 1
-                    </div>
-              </FlexyFlipCard>
-            </div>
-
-              <div className="item">
-                <FlexyFlipCard
-                    frontBackgroundColor="#B96aC9"
-                    backBackgroundColor="#231b1b"
-                >
-                    <div ref="flipper">
-                        Front 2
-                      </div>
-                      <div ref="flipper">
-                        Back 2
-                      </div>
-                </FlexyFlipCard>
-              </div>
-
             </div>
 
         </div>
