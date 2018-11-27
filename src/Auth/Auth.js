@@ -9,33 +9,18 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   });
+
+  userProfile;
 
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
-
-/*
-  login(e) {
-    alert('login');
-    e.preventDefault();
-    console.log('document.getElementById(email).value: ', document.getElementById('email').value);
-    let username = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    auth0.login( {
-      realm: databaseConnection,
-      username: username,
-      password: password
-    }, function(err) {
-      console.log('err: ', err);
-      //if (err) displayError(err);
-    });
-  }
-  */
 
   login() {
     this.auth0.authorize();
@@ -45,16 +30,10 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        /*console.log('authResult: ', authResult);
-        console.log('authResult.accessToken: ', authResult.accessToken);
-        console.log('authResult.idToken: ', authResult.idToken);*/
         history.replace('/home');
       } else if (err) {
         history.replace('/home');
         console.log(err);
-        /*console.log('authResult: ', authResult);
-        console.log('authResult.accessToken: ', authResult.accessToken);
-        console.log('authResult.idToken: ', authResult.idToken);*/
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
@@ -66,7 +45,6 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    // navigate to the app route instead of home, we call that instead
     history.replace('/home');
   }
 
@@ -84,5 +62,23 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('No Access Token found');
+    }
+    return accessToken;
+  }
+
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 }

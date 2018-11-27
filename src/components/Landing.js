@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 import { FlexyFlipCard } from 'flexy-flipcards';
+//import Profile from '../Auth/Profile';
 
 import Bingo from '../utils/Bingo';
 
@@ -14,6 +15,7 @@ class Landing extends Component {
   }
 
   componentDidMount() {
+
     const numTiles = 16;
 
     for (let i = 0; i < numTiles; i++) {
@@ -119,6 +121,7 @@ class Landing extends Component {
   render() {
     return (
       <div className="Landing">
+      <Profile />
         <h2>Your Radio Bingo Board</h2>
 
         <div className="tileCard">

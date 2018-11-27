@@ -16,11 +16,11 @@
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^1.1.4",
-    "sqlite": "^2.9.2",
-    "webpack": "^4.16.5"
+    "sqlite": "^2.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
